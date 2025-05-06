@@ -19,6 +19,42 @@ services:
     networks:
       - recommendation_net
 
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: recommendation_api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - recommender_service_ai
+    networks:
+      - recommendation_net
+
+  recommender_service_ai:
+    build:
+      context: ./recommender_service_ai
+      dockerfile: Dockerfile
+    container_name: recommendation_ai
+    ports:
+      - "5001:5001"
+    networks:
+      - recommendation_net
+    tty: true
+
+  front:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    container_name: recommendation_front
+    ports:
+      - "3001:3001"
+    depends_on:
+      - api
+    networks:
+      - recommendation_net
+
 volumes:
   postgres_data:
 

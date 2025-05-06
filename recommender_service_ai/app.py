@@ -1,6 +1,6 @@
 from sqlalchemy import text
-from recommender_service_ai.models import SessionLocal
-from recommender_service_ai.models import (
+from models import SessionLocal
+from models import (
     Base,
     User,
     Item,

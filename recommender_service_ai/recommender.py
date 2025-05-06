@@ -4,7 +4,7 @@ import torch
 import torch.nn as nn
 from sklearn.preprocessing import LabelEncoder
 
-JSON_SERVER_URL = "http://localhost:3000/api"
+JSON_SERVER_URL = "http://api:3000/api"
 
 
 class Recommender(nn.Module):
