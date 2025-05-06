@@ -45,28 +45,20 @@ A API Backend é desenvolvida em [Node.js](https://nodejs.org/) e utiliza o fram
 - Comunicar-se com o serviço de recomendação para obter sugestões de produtos.
 - Interagir com o banco de dados para armazenar e recuperar informações.
 
-### Endpoints da API
+### Frontend (`front/`)
 
-#### Usuários
-- **GET /users**: Retorna todos os usuários.
-- **POST /users**: Cria um novo usuário.
+O Frontend é desenvolvido com [React](https://reactjs.org/) e serve para exibir a interface interativa onde os usuários podem visualizar produtos e recomendações personalizadas.
 
-#### Itens
-- **GET /items**: Retorna todos os itens (produtos).
-- **POST /items**: Cria um novo item.
-- **GET /items/generate**: Gera 1.000 itens aleatórios para testes.
+### Serviço de Recomendação (`recommender_service_ai/`)
 
-#### Interações
-- **GET /interactions**: Retorna todas as interações de usuários com produtos.
-- **POST /interactions**: Cria uma nova interação de usuário com produto.
+O Serviço de Recomendação é desenvolvido em [Python](https://www.python.org/) e utiliza técnicas de inteligência artificial, com o apoio de bibliotecas como [PyTorch](https://pytorch.org/) para treinar e aplicar modelos de recomendação baseados nas interações dos usuários e produtos.
 
-#### Scores (Pontuações de Relevância)
-- **GET /scores**: Retorna todos os scores de relevância entre usuários e itens.
-- **POST /scores**: Cria um novo score de relevância.
-- **DELETE /scores/:score_id**: Deleta um score de relevância pelo `score_id`.
+### Banco de Dados (`db/`)
 
-#### Recomendação de Produtos
-- **GET /recommendations/:user_id**: Retorna uma lista de recomendações personalizadas para o usuário, ordenadas por relevância. Suporta paginação com parâmetros `page` e `limit`.
+O banco de dados armazena dados essenciais para o funcionamento do sistema, como usuários, produtos, interações e pontuações de relevância. É possível utilizar tanto [Json-Server](https://www.npmjs.com/package/json-server) quanto [PostgreSQL](https://www.postgresql.org/), dependendo das preferências do usuário para armazenamento.
+
+## Arquitetura `Postgres`
+![Alt text](./doc/db_arch.PNG)
 
 ## Instalação
 
@@ -77,56 +69,3 @@ Para executar o projeto localmente, siga os passos abaixo:
    ```bash
    git clone https://github.com/leonardoigor/ai_product_recommendation.git
    cd ai_product_recommendation
-
-## Uso
-Executando:
-```bash
-docker-compose up -d --build
-```
-Com a aplicação em execução, você pode:
-
-- **Visualizar produtos**: Navegue através do catálogo de produtos disponíveis.
-- **Interagir com os produtos**: Os usuários podem visualizar, curtir, adicionar ao carrinho, etc.
-- **Receber recomendações personalizadas**: Com base em suas interações, o sistema fornecerá sugestões de produtos.
-
-### Atualizar Recomendações
-
-Toda vez que você quiser atualizar as recomendações de produtos para um usuário, será necessário **disparar o serviço de recomendação** (`recommender_service_ai`) em Python para recalcular as pontuações de relevância e fornecer novas recomendações.
-
-Para atualizar as recomendações, execute o serviço de recomendação manualmente ou configure uma rotina que o dispare automaticamente, como por exemplo:
-
-```bash
-# Exemplo de execução do serviço de recomendação
-python recommender_service_ai/recommender.py
-```
-ou rode o container `recommender_service_ai` novamente
-
-
-## Tecnologias Utilizadas
-
-- **Frontend:**
-  - [React](https://reactjs.org/): Biblioteca JavaScript para construir interfaces de usuário dinâmicas e responsivas.
-  - [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript): Linguagem de programação usada para construir a lógica de interação do frontend.
-  - [CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS): Linguagem usada para estilizar a interface do usuário.
-
-- **Backend:**
-  - [Node.js](https://nodejs.org/): Ambiente de execução JavaScript no servidor, usado para construir a API backend.
-  - [Express](https://expressjs.com/): Framework web para Node.js que facilita o gerenciamento de rotas e requisições HTTP.
-
-- **Serviço de Recomendação:**
-  - [Python](https://www.python.org/): Linguagem de programação usada para implementar o serviço de recomendação baseado em inteligência artificial.
-  - [PyTorch](https://pytorch.org/get-started/locally/): Biblioteca de aprendizado de máquina usada para criar e treinar os modelos de recomendação.
-
-- **Banco de Dados:**
-  - [Json-Server](https://www.npmjs.com/package/json-server): Banco de dados NoSQL utilizado para armazenar os dados de usuários, produtos e interações.
-  - [PostgreSQL](https://www.postgresql.org/): Banco de dados relacional que pode ser utilizado em vez do MongoDB, dependendo das necessidades.
-
-- **Infraestrutura:**
-  - [Docker](https://www.docker.com/): Plataforma para containerização de aplicações, usada para garantir que todos os componentes funcionem da mesma forma em qualquer ambiente.
-  - [Docker Compose](https://docs.docker.com/compose/): Ferramenta que permite definir e executar aplicações Docker multi-containers, usada para orquestrar os serviços no projeto.
-
-## Licença
-
-Este projeto está licenciado sob a [MIT License](LICENSE). 
-
-A permissão é concedida, sem custos, para usar, copiar, modificar, fundir, publicar, distribuir, sublicenciar e/ou vender cópias do Software, com a condição de que a licença e o aviso de direitos autorais sejam incluídos em todas as cópias ou partes substanciais do Software. O software é fornecido "como está", sem garantia de qualquer tipo, expressa ou implícita, incluindo, mas não se limitando às garantias de comercialização ou adequação a um propósito específico. Em nenhum caso, os autores ou titulares dos direitos autorais serão responsáveis por quaisquer reivindicações, danos ou outras responsabilidades, seja em uma ação de contrato, ato ilícito ou de outra forma, decorrentes de ou em conexão com o Software ou o uso ou outros negócios no Software.
