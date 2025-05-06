@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recomendações</title>
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background-color: #f9f9f9;
+            padding: 2rem;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        select {
+            padding: 0.5rem;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .item {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .item:hover {
+            transform: scale(1.03);
+        }
+
+        .score {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+
+        .pagination {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .pagination button {
+            margin: 0 5px;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Recomendações de Itens</h1>
+    <label for="userSelect">Usuário:</label>
+    <select id="userSelect"></select>
+
+    <div class="items" id="itemsContainer"></div>
+
+    <div class="pagination">
+        <button onclick="changePage(-1)">Anterior</button>
+        <span id="pageInfo"></span>
+        <button onclick="changePage(1)">Próximo</button>
+    </div>
+
+    <script>
+        const baseUrl = "http://localhost:3000/api"; // Altere se necessário
+        let currentUserId = null;
+        let currentPage = 1;
+        const limit = 10;
+
+        const userSelect = document.getElementById("userSelect");
+        const itemsContainer = document.getElementById("itemsContainer");
+        const pageInfo = document.getElementById("pageInfo");
+
+        async function loadUsers() {
+            const res = await fetch(`${baseUrl}/users`);
+            const users = await res.json();
+            userSelect.innerHTML = "";
+            users.forEach(user => {
+                console.log(user.user_id)
+                const opt = document.createElement("option");
+                opt.value = user.user_id
+                opt.textContent = `Usuário ${user.username || user.id}`;
+                userSelect.appendChild(opt);
+            });
+            currentUserId = userSelect.value;
+            loadRecommendations();
+        }
+
+        userSelect.addEventListener("change", () => {
+            currentUserId = userSelect.value;
+            currentPage = 1;
+            loadRecommendations();
+        });
+
+        async function loadRecommendations() {
+            const res = await fetch(`${baseUrl}/recommendations/${currentUserId}?page=${currentPage}&limit=${limit}`);
+            const data = await res.json();
+            itemsContainer.innerHTML = "";
+
+            data.results.forEach(item => {
+                const card = document.createElement("div");
+                card.className = "item";
+                card.innerHTML = `
+          <p><strong>ID:</strong> ${item.item_id}</p>
+          <p><strong>Categoria:</strong> ${item.category}</p>
+          <p class="score">Score: ${item.score}</p>
+        `;
+                card.onclick = () => sendInteraction(item.item_id);
+                itemsContainer.appendChild(card);
+            });
+
+            pageInfo.textContent = `Página ${currentPage}`;
+        }
+
+        async function sendInteraction(itemId) {
+            const payload = {
+                interaction_type: 1,
+                UserUserId: parseInt(currentUserId),
+                ItemItemId: itemId
+            };
+
+            try {
+                const res = await fetch(`${baseUrl}/interactions`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+
+                if (res.ok) {
+                    alert(`Interação enviada para o item ${itemId}`);
+                } else {
+                    alert("Erro ao enviar interação");
+                }
+            } catch (err) {
+                alert("Falha na conexão com o servidor");
+                console.error(err);
+            }
+        }
+
+        function changePage(delta) {
+            if (currentPage + delta < 1) return;
+            currentPage += delta;
+            loadRecommendations();
+        }
+
+        // Inicializa
+        loadUsers();
+    </script>
+</body>
+
+</html>

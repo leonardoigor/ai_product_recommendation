@@ -1,0 +1,166 @@
+{
+  "users": [
+    {
+      "user_id": 1,
+      "username": "joao",
+      "id": "463d"
+    },
+    {
+      "user_id": 2,
+      "username": "maria",
+      "id": "5ef9"
+    },
+    {
+      "user_id": 3,
+      "username": "ana",
+      "id": "7f8b"
+    }
+  ],
+  "items": [
+    {
+      "item_id": 101,
+      "category": "livros",
+      "id": "2111"
+    },
+    {
+      "item_id": 102,
+      "category": "eletronicos",
+      "id": "5f78"
+    },
+    {
+      "item_id": 103,
+      "category": "roupas",
+      "id": "952b"
+    }
+  ],
+  "user_interactions": [
+    {
+      "id": "a596",
+      "user_id": 1,
+      "item_id": 101,
+      "interaction_type": 1,
+      "timestamp": "2025-05-04T10:34:34.275Z",
+      "item": {
+        "item_id": 101,
+        "category": "livros",
+        "id": "2111"
+      }
+    },
+    {
+      "id": "b76c",
+      "user_id": 1,
+      "item_id": 102,
+      "interaction_type": 1,
+      "timestamp": "2025-05-04T10:34:54.170Z",
+      "item": {
+        "item_id": 102,
+        "category": "eletronicos",
+        "id": "5f78"
+      }
+    },
+    {
+      "id": "e288",
+      "user_id": 2,
+      "item_id": 103,
+      "interaction_type": 1,
+      "timestamp": "2025-05-04T10:34:59.349Z",
+      "item": {
+        "item_id": 103,
+        "category": "roupas",
+        "id": "952b"
+      }
+    },
+    {
+      "id": "c07f",
+      "user_id": 2,
+      "item_id": 103,
+      "interaction_type": 1,
+      "timestamp": "2025-05-04T10:35:01.878Z",
+      "item": {
+        "item_id": 103,
+        "category": "roupas",
+        "id": "952b"
+      }
+    },
+    {
+      "id": "5a8c",
+      "user_id": 3,
+      "item_id": 102,
+      "interaction_type": 1,
+      "timestamp": "2025-05-04T10:35:13.668Z",
+      "item": {
+        "item_id": 102,
+        "category": "eletronicos",
+        "id": "5f78"
+      }
+    },
+    {
+      "id": "2fd9",
+      "user_id": 3,
+      "item_id": 102,
+      "interaction_type": 1,
+      "timestamp": "2025-05-04T10:35:14.923Z",
+      "item": {
+        "item_id": 102,
+        "category": "eletronicos",
+        "id": "5f78"
+      }
+    }
+  ],
+  "user_item_scores": [
+    {
+      "id": "2a26",
+      "user_id": 1,
+      "item_id": 101,
+      "relevance_score": 0.9922324419021606
+    },
+    {
+      "id": "71c0",
+      "user_id": 1,
+      "item_id": 102,
+      "relevance_score": 0.998571515083313
+    },
+    {
+      "id": "7e21",
+      "user_id": 1,
+      "item_id": 103,
+      "relevance_score": 0.9938580393791199
+    },
+    {
+      "id": "cc6c",
+      "user_id": 2,
+      "item_id": 101,
+      "relevance_score": 0.9941165447235107
+    },
+    {
+      "id": "7af7",
+      "user_id": 2,
+      "item_id": 102,
+      "relevance_score": 0.9989197254180908
+    },
+    {
+      "id": "0a73",
+      "user_id": 2,
+      "item_id": 103,
+      "relevance_score": 0.9953497052192688
+    },
+    {
+      "id": "b7b0",
+      "user_id": 3,
+      "item_id": 101,
+      "relevance_score": 0.9864637851715088
+    },
+    {
+      "id": "28ec",
+      "user_id": 3,
+      "item_id": 102,
+      "relevance_score": 0.9974988102912903
+    },
+    {
+      "id": "e226",
+      "user_id": 3,
+      "item_id": 103,
+      "relevance_score": 0.989283561706543
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  db:
+    build: 
+      context: ./db
+      dockerfile: Dockerfile  # Usa o Dockerfile personalizado
+    container_name: recommendation_db
+    environment:
+      POSTGRES_USER: recommender
+      POSTGRES_PASSWORD: recommender123
+      POSTGRES_DB: recommendationsystem
+      LANG: pt_BR.UTF-8
+      LC_ALL: pt_BR.UTF-8
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - recommendation_net
+
+volumes:
+  postgres_data:
+
+networks:
+  recommendation_net:
