@@ -79,7 +79,10 @@ Para executar o projeto localmente, siga os passos abaixo:
    cd ai_product_recommendation
 
 ## Uso
-
+Executando:
+```bash
+docker-compose up -d --build
+```
 Com a aplicação em execução, você pode:
 
 - **Visualizar produtos**: Navegue através do catálogo de produtos disponíveis.
