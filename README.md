@@ -118,7 +118,7 @@ ou rode o container `recommender_service_ai` novamente
   - [PyTorch](https://pytorch.org/get-started/locally/): Biblioteca de aprendizado de máquina usada para criar e treinar os modelos de recomendação.
 
 - **Banco de Dados:**
-  - [MongoDB](https://www.mongodb.com/): Banco de dados NoSQL utilizado para armazenar os dados de usuários, produtos e interações.
+  - [Json-Server](https://www.npmjs.com/package/json-server): Banco de dados NoSQL utilizado para armazenar os dados de usuários, produtos e interações.
   - [PostgreSQL](https://www.postgresql.org/): Banco de dados relacional que pode ser utilizado em vez do MongoDB, dependendo das necessidades.
 
 - **Infraestrutura:**
