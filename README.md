@@ -128,3 +128,5 @@ ou rode o container `recommender_service_ai` novamente
 ## Licença
 
 Este projeto está licenciado sob a [MIT License](LICENSE). 
+
+A permissão é concedida, sem custos, para usar, copiar, modificar, fundir, publicar, distribuir, sublicenciar e/ou vender cópias do Software, com a condição de que a licença e o aviso de direitos autorais sejam incluídos em todas as cópias ou partes substanciais do Software. O software é fornecido "como está", sem garantia de qualquer tipo, expressa ou implícita, incluindo, mas não se limitando às garantias de comercialização ou adequação a um propósito específico. Em nenhum caso, os autores ou titulares dos direitos autorais serão responsáveis por quaisquer reivindicações, danos ou outras responsabilidades, seja em uma ação de contrato, ato ilícito ou de outra forma, decorrentes de ou em conexão com o Software ou o uso ou outros negócios no Software.
