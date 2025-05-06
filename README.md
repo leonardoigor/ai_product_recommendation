@@ -102,3 +102,29 @@ python recommender_service_ai/recommender.py
 ou rode o container `recommender_service_ai` novamente
 
 
+## Tecnologias Utilizadas
+
+- **Frontend:**
+  - [React](https://reactjs.org/): Biblioteca JavaScript para construir interfaces de usuário dinâmicas e responsivas.
+  - [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript): Linguagem de programação usada para construir a lógica de interação do frontend.
+  - [CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS): Linguagem usada para estilizar a interface do usuário.
+
+- **Backend:**
+  - [Node.js](https://nodejs.org/): Ambiente de execução JavaScript no servidor, usado para construir a API backend.
+  - [Express](https://expressjs.com/): Framework web para Node.js que facilita o gerenciamento de rotas e requisições HTTP.
+
+- **Serviço de Recomendação:**
+  - [Python](https://www.python.org/): Linguagem de programação usada para implementar o serviço de recomendação baseado em inteligência artificial.
+  - [PyTorch](https://pytorch.org/get-started/locally/): Biblioteca de aprendizado de máquina usada para criar e treinar os modelos de recomendação.
+
+- **Banco de Dados:**
+  - [MongoDB](https://www.mongodb.com/): Banco de dados NoSQL utilizado para armazenar os dados de usuários, produtos e interações.
+  - [PostgreSQL](https://www.postgresql.org/): Banco de dados relacional que pode ser utilizado em vez do MongoDB, dependendo das necessidades.
+
+- **Infraestrutura:**
+  - [Docker](https://www.docker.com/): Plataforma para containerização de aplicações, usada para garantir que todos os componentes funcionem da mesma forma em qualquer ambiente.
+  - [Docker Compose](https://docs.docker.com/compose/): Ferramenta que permite definir e executar aplicações Docker multi-containers, usada para orquestrar os serviços no projeto.
+
+## Licença
+
+Este projeto está licenciado sob a [MIT License](LICENSE). 
