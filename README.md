@@ -13,6 +13,8 @@ Sistema completo de recomendação de produtos baseado em inteligência artifici
   - [Banco de Dados (`db/`)](#banco-de-dados-db)
 - [Instalação](#instalação)
 - [Uso](#uso)
+  - [Endpoints da API](#endpoints-da-api)
+  - [Atualizar Recomendações](#atualizar-recomendações)
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
 - [Licença](#licença)
 
@@ -43,34 +45,28 @@ A API Backend é desenvolvida em [Node.js](https://nodejs.org/) e utiliza o fram
 - Comunicar-se com o serviço de recomendação para obter sugestões de produtos.
 - Interagir com o banco de dados para armazenar e recuperar informações.
 
-### Frontend (`front/`)
+### Endpoints da API
 
-O frontend é uma aplicação web desenvolvida com [React](https://reactjs.org/), proporcionando uma interface amigável e interativa para os usuários.
+#### Usuários
+- **GET /users**: Retorna todos os usuários.
+- **POST /users**: Cria um novo usuário.
 
-**Principais funcionalidades:**
+#### Itens
+- **GET /items**: Retorna todos os itens (produtos).
+- **POST /items**: Cria um novo item.
+- **GET /items/generate**: Gera 1.000 itens aleatórios para testes.
 
-- Permitir que os usuários visualizem produtos e recebam recomendações.
-- Enviar dados de interação dos usuários para a API Backend.
-- Apresentar as recomendações de forma clara e atrativa.
+#### Interações
+- **GET /interactions**: Retorna todas as interações de usuários com produtos.
+- **POST /interactions**: Cria uma nova interação de usuário com produto.
 
-### Serviço de Recomendação (`recommender_service_ai/`)
+#### Scores (Pontuações de Relevância)
+- **GET /scores**: Retorna todos os scores de relevância entre usuários e itens.
+- **POST /scores**: Cria um novo score de relevância.
+- **DELETE /scores/:score_id**: Deleta um score de relevância pelo `score_id`.
 
-Este serviço é responsável por processar os dados e gerar recomendações personalizadas utilizando técnicas de inteligência artificial. É desenvolvido em [Python](https://www.python.org/) e utilizar bibliotecas como [Pytorch](https://pytorch.org/get-started/locally/).
-
-**Principais funcionalidades:**
-
-- Analisar dados de usuários e produtos.
-- Aplicar algoritmos de recomendação para sugerir produtos relevantes.
-- Fornecer as recomendações para a API Backend mediante requisições.
-
-### Banco de Dados (`db/`)
-
-O banco de dados armazena informações essenciais para o funcionamento do sistema, como dados de usuários, produtos e interações. A estrutura do banco pode ser definida no arquivo `db.json` e gerenciada por um serviço de banco de dados como o [MongoDB](https://www.mongodb.com/) ou [PostgreSQL](https://www.postgresql.org/).
-
-**Principais funcionalidades:**
-
-- Armazenar e recuperar dados conforme as necessidades dos serviços.
-- Manter a integridade e consistência das informações.
+#### Recomendação de Produtos
+- **GET /recommendations/:user_id**: Retorna uma lista de recomendações personalizadas para o usuário, ordenadas por relevância. Suporta paginação com parâmetros `page` e `limit`.
 
 ## Instalação
 
@@ -81,7 +77,25 @@ Para executar o projeto localmente, siga os passos abaixo:
    ```bash
    git clone https://github.com/leonardoigor/ai_product_recommendation.git
    cd ai_product_recommendation
-   
-2. **Rodar o Projeto:**
-   ```bash
-   docker-compose up -d --build
+
+## Uso
+
+Com a aplicação em execução, você pode:
+
+- **Visualizar produtos**: Navegue através do catálogo de produtos disponíveis.
+- **Interagir com os produtos**: Os usuários podem visualizar, curtir, adicionar ao carrinho, etc.
+- **Receber recomendações personalizadas**: Com base em suas interações, o sistema fornecerá sugestões de produtos.
+
+### Atualizar Recomendações
+
+Toda vez que você quiser atualizar as recomendações de produtos para um usuário, será necessário **disparar o serviço de recomendação** (`recommender_service_ai`) em Python para recalcular as pontuações de relevância e fornecer novas recomendações.
+
+Para atualizar as recomendações, execute o serviço de recomendação manualmente ou configure uma rotina que o dispare automaticamente, como por exemplo:
+
+```bash
+# Exemplo de execução do serviço de recomendação
+python recommender_service_ai/recommender.py
+```
+ou rode o container `recommender_service_ai` novamente
+
+
